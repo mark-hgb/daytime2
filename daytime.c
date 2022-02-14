@@ -3,7 +3,6 @@
 #include <signal.h>
 #include <getopt.h>
 #include <assert.h>
-#include <poll.h>
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <netdb.h>
@@ -158,7 +157,7 @@ void parse_arguments(int argc, char *argv[], struct srvcfg *cfg)
 
     int ret;
 
-    static const char optstring[] = "i:tup:h";
+    static const char optstring[] = "i:tp:h";
     static const struct option optslong[] = {
         {"ip", required_argument, NULL, 'i'},
         {"tcp", no_argument, NULL, 't'},
@@ -223,7 +222,7 @@ void start_server(struct srvcfg *cfg)
 int create_socket(int type, struct sockaddr_in *addr)
 {
     assert(type == SOCK_STREAM || type == SOCK_DGRAM);
-	assert(addr != NULL);
+    assert(addr != NULL);
 
     int sockfd;
     int reuseaddr = 1;
